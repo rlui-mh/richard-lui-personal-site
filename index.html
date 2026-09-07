@@ -452,15 +452,21 @@
 <script>
   const tabs = document.querySelectorAll('[data-tab]');
   const panels = document.querySelectorAll('.panel');
+  const pathForTab = { home: '/', handbook: '/handbook', canto: '/canto' };
+  const tabForPath = { '/': 'home', '/handbook': 'handbook', '/canto': 'canto' };
 
   function activate(name, push) {
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
     panels.forEach(p => p.classList.toggle('active', p.id === name));
-    if (push) history.replaceState(null, '', '#' + name);
+    if (push) history.replaceState(null, '', pathForTab[name]);
   }
 
   tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab, true)));
 
-  const initial = (location.hash || '#home').slice(1);
-  activate(['home', 'handbook', 'canto'].includes(initial) ? initial : 'home', false);
+  window.addEventListener('popstate', () => {
+    activate(tabForPath[location.pathname] || 'home', false);
+  });
+
+  const initialPath = location.pathname.replace(/\/index\.html$/, '') || '/';
+  activate(tabForPath[initialPath] || 'home', false);
 </script>

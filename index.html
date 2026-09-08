@@ -197,12 +197,22 @@
     padding: 0;
     border-top: 1px solid var(--line);
   }
-  ol.chapters li {
+  .chapter-row {
     display: grid;
     grid-template-columns: 34px 1fr;
     gap: 4px 18px;
     padding: 20px 0;
     border-bottom: 1px solid var(--line);
+  }
+  a.chapter-row {
+    color: inherit;
+    text-decoration: none;
+  }
+  a.chapter-row:hover .chapter-title {
+    color: var(--jade-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 2px;
   }
   .chapter-num {
     font-family: "IBM Plex Mono", monospace;
@@ -221,13 +231,59 @@
     font-family: "IBM Plex Mono", monospace;
     line-height: 1.55;
   }
+  .chapter-desc.pending { font-style: italic; }
 
-  .handbook-note {
-    margin-top: 28px;
-    font-size: 13.5px;
-    color: var(--muted);
+  .article-back {
+    display: inline-block;
     font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 28px;
   }
+  .article-back:hover { color: var(--ink); }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .eyebrow .dot { color: var(--jade); }
+
+  #gtm-ai-agent p {
+    max-width: 64ch;
+    color: var(--ink-soft);
+    margin: 0 0 22px;
+  }
+
+  ul.f-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    max-width: 64ch;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  ul.f-list li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--ink-soft);
+  }
+  ul.f-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--jade-ink);
+  }
+  ul.f-list strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
 
   /* ---- Canto Dinner Club ---- */
   .dish-grid {
@@ -347,42 +403,59 @@
     <h2 class="section-label">Chapters</h2>
     <ol class="chapters">
       <li>
-        <span class="chapter-num">01</span>
-        <div>
-          <p class="chapter-title">What GTM Engineering actually is</p>
-          <p class="chapter-desc">Where it sits between sales, RevOps, and product — and why it's not just "sales tooling."</p>
+        <a class="chapter-link chapter-row" href="/handbook/all-purpose-gtm-agent" data-goto="gtm-ai-agent">
+          <span class="chapter-num">01</span>
+          <div>
+            <p class="chapter-title">Always Start with an All-Purpose GTM AI Agent</p>
+            <p class="chapter-desc">Ship one fast, fluid, familiar agent before you fragment into purpose-built bots.</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <div class="chapter-row">
+          <span class="chapter-num">02</span>
+          <div>
+            <p class="chapter-title">Battling the Data Nerd Stereotype as GTM Eng</p>
+            <p class="chapter-desc pending">coming soon</p>
+          </div>
         </div>
       </li>
       <li>
-        <span class="chapter-num">02</span>
-        <div>
-          <p class="chapter-title">Hiring the first GTM engineer</p>
-          <p class="chapter-desc">The profile that works: builder first, seller second, allergic to busywork.</p>
-        </div>
-      </li>
-      <li>
-        <span class="chapter-num">03</span>
-        <div>
-          <p class="chapter-title">The tooling stack</p>
-          <p class="chapter-desc">What we've built in-house vs. bought, and where the line moves as the team grows.</p>
-        </div>
-      </li>
-      <li>
-        <span class="chapter-num">04</span>
-        <div>
-          <p class="chapter-title">Instrumenting the sales motion</p>
-          <p class="chapter-desc">Turning rep workflows into data — pipeline signals, call intelligence, and what we actually act on.</p>
-        </div>
-      </li>
-      <li>
-        <span class="chapter-num">05</span>
-        <div>
-          <p class="chapter-title">Where GTM Eng ends and RevOps begins</p>
-          <p class="chapter-desc">Drawing the line before it draws itself the hard way.</p>
+        <div class="chapter-row">
+          <span class="chapter-num">03</span>
+          <div>
+            <p class="chapter-title">Vibes Based Rollouts + Enablement</p>
+            <p class="chapter-desc pending">coming soon</p>
+          </div>
         </div>
       </li>
     </ol>
-    <p class="handbook-note">— more chapters added as they're written.</p>
+  </section>
+
+  <section class="panel" id="gtm-ai-agent">
+    <a class="article-back" href="/handbook" data-goto="handbook">&larr; Handbook</a>
+    <div class="eyebrow">GTM Eng Handbook <span class="dot">·</span> Chapter 01</div>
+    <h1 class="page-title">Always Start with an All-Purpose GTM AI Agent</h1>
+
+    <p>Every company wants their AEs, CSMs, and other non-technical ops users to use AI agents to "increase productivity." There's a common temptation to jump straight to purpose-built agents for every use case - a coaching agent, a BI agent, a forecasting agent, all at once. But if your organization is starting from ground zero, I highly recommend starting with an all-purpose GTM agent focused on a basic principle: information retrieval. How can a rep get the information they need in a single query instead of 10+ clicks across multiple applications?</p>
+
+    <p>At this point there's a very real build vs. buy decision. I respect Glean, but they're extremely expensive if you want full org coverage, and it'll take a while to set up. At Tractian, we made the build decision with no regrets.</p>
+
+    <p>That's the bet behind Jimmy Neutron, our internal GTM agent. Instead of shipping six specialized bots, we built one general purpose brain in Slack, wired via an MCP tool executor into Gong, CRM, our internal industry knowledge base, and the enablement drive.</p>
+
+    <p>Getting that first agent adopted comes down to three things we hold ourselves to: it has to be fast, fluid, and familiar. Miss any one of those and you don't get strong adoption, and you've wasted all those precious GTM Eng hours. Here's how each of the three F's mapped to our build decisions:</p>
+
+    <ul class="f-list">
+      <li><strong>Fast.</strong> Deals evolve constantly, so a RAG setup querying stale embeddings would have meant slow, second-guessed answers. We went tool-based instead. The model calls a live function against Gong or HubSpot in real time rather than searching a static index.</li>
+      <li><strong>Fluid.</strong> One agent, a dozen different asks: pre call briefs, live deal recaps, closed lost mining, pipeline hygiene, new hire coaching, churn risk flags. Reps shouldn't have to remember which bot handles which question; it should just be the one they always go to.</li>
+      <li><strong>Familiar.</strong> We put it in Slack, not a new UI. Reps already live there all day. Meet people in the tool they already open by habit.</li>
+    </ul>
+
+    <p>The part that actually took a lot of discipline wasn't adding capability - it was writing down what Jimmy explicitly won't do yet: no write back to HubSpot, no CSV exports, no cold email copywriting, no lead scraping, no legal redlining, no scheduling. Not because it's technically impossible, but because a general-purpose agent's job is to prove out one thing: fast, fluid, familiar access to context before it's allowed to sprawl.</p>
+
+    <p>That restraint is what makes the roadmap work. Phase 1 ships the one general agent to every AE, CSM, and RSD. Only in Phase 2, once usage shows exactly where the leverage actually is, do we branch into purpose-built agents, each inheriting the ever-improving data layer the general agent already validated in the field.</p>
+
+    <p>The lesson generalizes past Tractian: ship the fast, fluid, familiar agent first, and let real usage tell you which of its jobs deserves to become its own specialized build.</p>
   </section>
 
   <section class="panel" id="canto">
@@ -454,21 +527,37 @@
 <script>
   const tabs = document.querySelectorAll('[data-tab]');
   const panels = document.querySelectorAll('.panel');
-  const pathForTab = { home: '/', handbook: '/handbook', canto: '/canto' };
-  const tabForPath = { '/': 'home', '/handbook': 'handbook', '/canto': 'canto' };
 
-  function activate(name, push) {
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
-    panels.forEach(p => p.classList.toggle('active', p.id === name));
-    if (push) history.replaceState(null, '', pathForTab[name]);
+  const viewMeta = {
+    home:          { path: '/',                              navTab: 'home' },
+    handbook:      { path: '/handbook',                      navTab: 'handbook' },
+    canto:         { path: '/canto',                         navTab: 'canto' },
+    'gtm-ai-agent':{ path: '/handbook/all-purpose-gtm-agent', navTab: 'handbook' },
+  };
+  const pathToView = {};
+  Object.entries(viewMeta).forEach(([id, meta]) => { pathToView[meta.path] = id; });
+
+  function activate(viewId, push) {
+    const meta = viewMeta[viewId] || viewMeta.home;
+    const resolvedId = viewMeta[viewId] ? viewId : 'home';
+    panels.forEach(p => p.classList.toggle('active', p.id === resolvedId));
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === meta.navTab));
+    if (push) history.replaceState(null, '', meta.path);
+    window.scrollTo(0, 0);
   }
 
   tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab, true)));
+  document.querySelectorAll('[data-goto]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      activate(el.dataset.goto, true);
+    });
+  });
 
   window.addEventListener('popstate', () => {
-    activate(tabForPath[location.pathname] || 'home', false);
+    activate(pathToView[location.pathname] || 'home', false);
   });
 
   const initialPath = location.pathname.replace(/\/index\.html$/, '') || '/';
-  activate(tabForPath[initialPath] || 'home', false);
+  activate(pathToView[initialPath] || 'home', false);
 </script>

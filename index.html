@@ -243,6 +243,14 @@
   }
   .article-back:hover { color: var(--ink); }
 
+  .article-subhead {
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 64ch;
+    margin: 0 0 28px;
+  }
+
   .eyebrow {
     font-family: "IBM Plex Mono", monospace;
     font-size: 12px;
@@ -412,13 +420,13 @@
         </a>
       </li>
       <li>
-        <div class="chapter-row">
+        <a class="chapter-link chapter-row" href="/handbook/frequent-rub-on-gtm-eng" data-goto="frequent-rub">
           <span class="chapter-num">02</span>
           <div>
-            <p class="chapter-title">Battling the Data Nerd Stereotype as GTM Eng</p>
-            <p class="chapter-desc pending">coming soon</p>
+            <p class="chapter-title">The Frequent Rub on GTM Engineering Folks</p>
+            <p class="chapter-desc">"Aren't you guys just data and systems/process people?"</p>
           </div>
-        </div>
+        </a>
       </li>
       <li>
         <div class="chapter-row">
@@ -456,6 +464,31 @@
     <p>That restraint is what makes the roadmap work. Phase 1 ships the one general agent to every AE, CSM, and RSD. Only in Phase 2, once usage shows exactly where the leverage actually is, do we branch into purpose-built agents, each inheriting the ever-improving data layer the general agent already validated in the field.</p>
 
     <p>The lesson generalizes past Tractian: ship the fast, fluid, familiar agent first, and let real usage tell you which of its jobs deserves to become its own specialized build.</p>
+  </section>
+
+  <section class="panel" id="frequent-rub">
+    <a class="article-back" href="/handbook" data-goto="handbook">&larr; Handbook</a>
+    <div class="eyebrow">GTM Eng Handbook <span class="dot">·</span> Chapter 02</div>
+    <h1 class="page-title">The Frequent Rub on GTM Engineering Folks</h1>
+    <p class="article-subhead">"Aren't you guys just data and systems/process people?"</p>
+
+    <p>Thanks, bud.</p>
+
+    <p>It's a most common assumption made about GTM Engineering teams. And those people are not entirely wrong, because we do live very deep in the data and the systems. But treating that as the whole job is where the stereotype comes from, and it's something I've found myself actively working to disprove with my team.</p>
+
+    <p>I see a lot of great content about AI agents and automation in GTM right now. I see a lot less about the core principles that actually make a GTM Engineering team succeed. For me, that means staying focused on ground truth, what's actually happening with customers and on the frontline, instead of leaning on qualitative assumptions or data assumptions alone. Both fail the same way if only done independently: quant without ground truth, and gut without evidence. There's a great quote from Leo Vieira, Tractian's COO: <em>"If the terrain doesn't match the data, trust the terrain."</em></p>
+
+    <p><strong>How I operate and my expectations of the team:</strong></p>
+
+    <ul class="f-list">
+      <li><strong>Stay close to the frontline.</strong> Customers, Sales, CS, Gong, product analytics. The frontline shows up in a lot of forms, and we try to touch all of them, not just the ones that live in a dashboard.</li>
+      <li><strong>Collaborate + communicate with our team leaders globally.</strong> Systems built in isolation from the people running the regions don't get adopted or survive. They have important insights that can usually be incorporated into system builds and rollouts. You don't want to miss out on those.</li>
+      <li><strong>Leverage industry best practices.</strong> Very rarely are we inventing GTM playbooks from scratch. There is a strong case to understand what is working well at other high growth companies and adapt it to how Tractian actually sells. There are certain extremely strategic and high leverage projects where we spend a lot of time pushing the boundaries on what is possible (I'm not revealing what those are on a public website like this). You don't need that to be the case for every single GTM eng project.</li>
+    </ul>
+
+    <p>The frontline principle is the one that does the most work against the stereotype, because it's the easiest one to fake with a Slack message and the hardest one to fake in person. In the last few months alone, more than half of my team put on hard hats and steel-toe boots to step onto our customers' factory floors. They do it to translate real-world context into better systems, processes, and experiences for the company.</p>
+
+    <p>Spending time with customers does something a query can't. It's a powerful reminder of the mission we're actually on. It's a lot harder to call someone "just a data and systems person" when they were standing on the same factory floor as the customer three weeks ago, watching the exact problem the dashboard is trying to describe.</p>
   </section>
 
   <section class="panel" id="canto">
@@ -533,6 +566,7 @@
     handbook:      { path: '/handbook',                      navTab: 'handbook' },
     canto:         { path: '/canto',                         navTab: 'canto' },
     'gtm-ai-agent':{ path: '/handbook/all-purpose-gtm-agent', navTab: 'handbook' },
+    'frequent-rub':{ path: '/handbook/frequent-rub-on-gtm-eng', navTab: 'handbook' },
   };
   const pathToView = {};
   Object.entries(viewMeta).forEach(([id, meta]) => { pathToView[meta.path] = id; });

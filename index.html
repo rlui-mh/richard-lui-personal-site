@@ -451,7 +451,7 @@
 
     <p>That's the bet behind Jimmy Neutron, our internal GTM agent. Instead of shipping six specialized bots, we built one general purpose brain in Slack, wired via an MCP tool executor into Gong, CRM, our internal industry knowledge base, and the enablement drive.</p>
 
-    <p>Getting that first agent adopted comes down to three things we hold ourselves to: it has to be fast, fluid, and familiar. Miss any one of those and you don't get strong adoption, and you've wasted all those precious GTM Eng hours. Here's how each of the three F's mapped to our build decisions:</p>
+    <p>We're at 200+ WAUs and growing as of late 2026, 6 months after beta launch. Getting that first agent widely adopted comes down to three things we hold ourselves to: it has to be fast, fluid, and familiar. Miss any one of those and you don't get strong adoption, and you've wasted all those precious GTM Eng hours. Here's how each of the three F's mapped to our build decisions:</p>
 
     <ul class="f-list">
       <li><strong>Fast.</strong> Deals evolve constantly, so a RAG setup querying stale embeddings would have meant slow, second-guessed answers. We went tool-based instead. The model calls a live function against Gong or HubSpot in real time rather than searching a static index.</li>
